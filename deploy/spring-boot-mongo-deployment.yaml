@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-mongo-deployment
+  labels:
+    app: spring-boot-mongo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # all Pods that match this label (other labels are allowed) belong to this deployment
+      app: spring-boot-mongo-app
+  template: # configuration for Pod
+    metadata:
+      labels: # matches this deployment's label so this Pod will be related to this deployment
+        app: spring-boot-mongo-app
+    spec:
+      containers: # you can have multiple containers in a Pod
+        - name: spring-boot-mongo-app
+          image: example/spring-boot-mongo:0.3.0
+          imagePullPolicy: Never # this is essential for picking up local image
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: mongodb-user
+                  name: mongodb-secret
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mongodb-password
+                  name: mongodb-secret
+            - name: MONGODB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: mongodb-url
+                  name: mongodb-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-mongo-service
+spec:
+  type: NodePort
+  selector:
+    app: spring-boot-mongo # should match the label of a Pod
+  ports:
+    - protocol: TCP
+      port: 8080 # service port
+      targetPort: 8080 # should match the container port
+      nodePort: 30100
