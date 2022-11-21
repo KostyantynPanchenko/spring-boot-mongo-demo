@@ -45,7 +45,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: spring-boot-mongo # should match the label of a Pod
+    app: spring-boot-mongo-app # should match the label of a Pod
   ports:
     - protocol: TCP
       port: 8080 # service port
