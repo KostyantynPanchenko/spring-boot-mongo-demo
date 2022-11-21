@@ -52,7 +52,7 @@ Steps:
 ]
 ```
 
-#### Adding Ingress for external access to the app in the cluster
+#### Adding Ingress for external access to the app in a cluster
 
 * Run `kubectl apply -f mongo-ingress.yaml`
 * Add `127.0.0.1 spring-boot-mongo.net` to your `hosts` file (in Windows C:
@@ -94,6 +94,11 @@ Option 2.
 * Run `kubectl apply -f spring-boot-mongo-deployment.yaml`
 * Open your browser and submit request to `spring-boot-mongo.net/api/v1/students`
 * Observe the results and close the second terminal window
+
+### Useful Minikube and Kubernetes documentation
+
+* [https://minikube.sigs.k8s.io/docs/handbook/accessing/](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
+* [Use Port Forwarding to Access Applications in a Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/)
 
 ### Guides and Reference Documentation
 
