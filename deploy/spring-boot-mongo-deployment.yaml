@@ -16,7 +16,7 @@ spec:
     spec:
       containers: # you can have multiple containers in a Pod
         - name: spring-boot-mongo-app
-          image: example/spring-boot-mongo:0.3.0
+          image: example/spring-boot-mongo:0.4.0
           imagePullPolicy: Never # this is essential for picking up local image
           ports:
             - containerPort: 8080

@@ -33,7 +33,7 @@ public class SpringBootMongoApplication {
             "Michael",
             "Jordan",
             "mj23@jordan.com",
-            Gender.MAIL,
+            Gender.MALE,
             new Address("USA", "Chicago", "Main street"),
             List.of("Victory"),
             BigDecimal.TEN,

@@ -26,8 +26,8 @@ Steps:
 * Run `kubectl apply -f spring-boot-mongo-deployment.yaml`
 * Verify both services are up and running `kubectl get all`
 * Forward the port from the
-  cluster ` kubectl port-forward deployment/spring-boot-mongo-deployment 8080:8080`
-* Issue `GET` request to `http://localhost:8080/api/v1/students/all` endpoint
+  cluster `kubectl port-forward deployment/spring-boot-mongo-deployment 8080:8080`
+* Issue `GET` request to `http://localhost:8080/api/v1/students` endpoint
 * Examine response (sample below)
 
 ```json
@@ -51,6 +51,49 @@ Steps:
   }
 ]
 ```
+
+#### Adding Ingress for external access to the app in the cluster
+
+* Run `kubectl apply -f mongo-ingress.yaml`
+* Add `127.0.0.1 spring-boot-mongo.net` to your `hosts` file (in Windows C:
+  \Windows\System32\drivers\etc)
+
+Option 1.
+
+* Open a separate (second) terminal window and
+  run `minikube service spring-boot-mongo-service --url`
+* You should see the output. The important thing is the port number, in this case it is 55126 (used
+  as <PORT_NUMBER> below)
+
+``` shell
+  http://127.0.0.1:55126
+  ! Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+```
+
+* Open your browser and submit request to `spring-boot-mongo.net:<PORT_NUMBER>/api/v1/students`
+* Observe the results and close the second terminal window
+
+Option 2.
+
+* Open a separate (second) terminal window and run `minikube tunnel`
+* You should see the output
+
+``` shell
+* Tunnel successfully started
+
+* NOTE: Please do not close this terminal as this process must stay alive for the tunnel to be accessible ...
+
+* Starting tunnel for service spring-boot-mongo-service.
+! Access to ports below 1024 may fail on Windows with OpenSSH clients older than v8.1. For more information, see: https://minikube.sigs.k8s.io/docs/handbook/accessing/#access-to-ports-1024-on-windows-requires-root-permission
+* Starting tunnel for service mongo-ingress.
+```
+
+* Change service type in `spring-boot-mongo-deployment.yaml` from `NodePort` to `LoadBalancer` (see
+  line 46) and comment out line 53
+* Change service port in `spring-boot-mongo-deployment.yaml` from 8080 to 80 (line 51): `port: 80`
+* Run `kubectl apply -f spring-boot-mongo-deployment.yaml`
+* Open your browser and submit request to `spring-boot-mongo.net/api/v1/students`
+* Observe the results and close the second terminal window
 
 ### Guides and Reference Documentation
 
