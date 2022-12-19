@@ -27,28 +27,28 @@ public class MongoTemplateRepository {
     return mongo.findById(id, Student.class);
   }
 
-  public Student findOne(final String key, final String value) {
+  public Student findOne(final String key, final Object value) {
     CriteriaDefinition criteria = Criteria.where(key).is(value);
     Query selectQuery = new Query(criteria);
     return mongo.findOne(selectQuery, Student.class);
   }
 
   public UpdateResult updateOne(
-      final String key, final String value, final String updateKey, final String updateValue) {
+      final String key, final Object value, final String updateKey, final Object updateValue) {
     Query query = new Query(Criteria.where(key).is(value));
     UpdateDefinition updateDefinition = Update.update(updateKey, updateValue);
     return mongo.updateFirst(query, updateDefinition, Student.class);
   }
 
-  public List<Student> findMany(final String key, final String value) {
+  public List<Student> findMany(final String key, final Object value) {
     return mongo.find(new Query(Criteria.where(key).is(value)), Student.class);
   }
 
-  public DeleteResult deleteOne(final String key, final String value) {
+  public DeleteResult deleteOne(final String key, final Object value) {
     return mongo.remove(new Query(Criteria.where(key).is(value)), Student.class);
   }
 
-  public boolean exists(final String key, final String value) {
+  public boolean exists(final String key, final Object value) {
     return mongo.exists(new Query(Criteria.where(key).is(value)), Student.class);
   }
 }

@@ -33,7 +33,7 @@ Steps:
 ```json
 [
   {
-    "id": "637757f93654c676d6722333",
+    "id": "63a0b2297574c67e89edb69a",
     "name": "Michael",
     "surname": "Jordan",
     "email": "mj23@jordan.com",
@@ -43,11 +43,27 @@ Steps:
       "city": "Chicago",
       "postCode": "Main street"
     },
-    "favourites": [
-      "Victory"
+    "rewards": [
+      {
+        "id": {
+          "timestamp": 1671475753,
+          "date": "2022-12-19T18:49:13.000+00:00"
+        },
+        "name": "Slam Dunk contest winner",
+        "year": "1985-04-26"
+      },
+      {
+        "id": {
+          "timestamp": 1671475753,
+          "date": "2022-12-19T18:49:13.000+00:00"
+        },
+        "name": "NBA Finals MVP",
+        "year": "1995-06-14"
+      }
     ],
-    "totalSpentInBooks": 10,
-    "createdAt": "2022-11-18T10:01:28.957"
+    "totalEarnings": 10,
+    "createdAt": "2022-12-19T20:49:13.875",
+    "version": 1
   }
 ]
 ```
@@ -125,17 +141,7 @@ The following guides illustrate how to use some features concretely:
 * [Spring Boot Integration with MongoDB Tutorial](https://www.mongodb.com/compatibility/spring-boot)
 * [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
 * [Spring Data MongoDB](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#data.nosql.mongodb)
-
-
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-
-
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.5/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.5/gradle-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#web)
+* [Mapping Annotation Overview](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#mapping-usage-annotations)
 
 ### Some console queries examples
 
